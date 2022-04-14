@@ -74,7 +74,7 @@ export default class utils {
   }
 
   static parseRoute (url) {
-    let u = '^' + url + '(?:(\\?[^#]+))?/?$'
+    let u = url === '/' ? '^(?:(\\?[^#]+))?/?$' : '^' + url + '(?:(\\?[^#]+))?/?$'
     let hasParam = false
     if (url.match(/\/:[a-zA-Z0-9]+/g)) {
       hasParam = true

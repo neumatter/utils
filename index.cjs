@@ -1,7 +1,8 @@
 
-const requireIS = async () => (await import('@neumatter/is')).default
-const IS = await requireIS()
-
+/**
+ * 
+ * @type {import('./types/index').default}
+ */
 class utils {
   /**
    * Converts a string to camelCase.
@@ -48,9 +49,9 @@ class utils {
       return obj
     }
 
-    if (IS.array(input)) return arrayToCamelCase(input)
-    if (IS.object(input)) return objectToCamelCase(input)
-    if (IS.string(input)) return toCamelCase(toWords(input))
+    if (isArray(input)) return arrayToCamelCase(input)
+    if (isObject(input)) return objectToCamelCase(input)
+    if (isString(input)) return toCamelCase(toWords(input))
 
     return new TypeError('Did not recognize type. Valid Types: <array>, <object>, <string>')
   }
@@ -75,7 +76,7 @@ class utils {
   }
 
   static parseRoute (url) {
-    let u = '^' + url + '(?:(\\?[^#]+))?/?$'
+    let u = url === '/' ? '^(?:(\\?[^#]+))?/?$' : '^' + url + '(?:(\\?[^#]+))?/?$'
     let hasParam = false
     if (url.match(/\/:[a-zA-Z0-9]+/g)) {
       hasParam = true

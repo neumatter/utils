@@ -1,4 +1,6 @@
 
+declare module '@neumatter/utils'
+
 declare class utils {
   static camelCase: (input: any) => string
   static parsePath: (path: any) => any
@@ -12,3 +14,5 @@ declare class utils {
   static promiseMapAny: (arr: any, cb: any) => Promise<any>
   static async asyncSortObjects: (arr: string[], keyOfObj: string) => Promise<string[]>
 }
+
+export = utils

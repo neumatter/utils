@@ -1,6 +1,6 @@
 {
   "name": "@neumatter/utils",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Module for random utils.",
   "type": "module",
   "author": "Cal Young",
