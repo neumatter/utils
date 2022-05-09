@@ -125,6 +125,93 @@ class utils {
     compareArray.sort((a, b) => +(a[0] < b[0]) || -(a[0] > b[0]))
     return compareArray.map(x => x[1])
   }
+
+  /**
+   *
+   * @param {Array} array
+   * @param {(element: any, index: number) => void} callback Function to run on each element in set.
+   */
+   static each (array, callback) {
+    const { length } = array
+    let index = -1
+    while (++index < length) {
+      callback(array[index], index, array)
+    }
+    return array
+  }
+
+  static map (array, callback) {
+    const { length } = array
+    const output = new Array(length)
+    let index = -1
+    while (++index < length) {
+      output[index] = callback(array[index], index)
+    }
+    return output
+  }
+
+  static pack (array, callback) {
+    const { length } = array
+    const output = new Array(length)
+    let index = -1
+    while (++index < length) {
+      output[index] = callback(array[index], index)
+    }
+    return Promise.all(output)
+  }
+
+  static reduce (array, callback, output) {
+    const length = array.length
+    let index = -1
+    while (++index < length) {
+      output = callback(output, array[index], index)
+    }
+    return output
+  }
+
+  static toObject (array, key) {
+    const output = {}
+    const length = array.length
+    let index = -1
+    while (++index < length) {
+      if (key) output[array[index][key]] = array[index]
+      else output[index] = array[index]
+    }
+    return output
+  }
+
+  static filter (array, callback) {
+    const length = array.length
+    const output = []
+    let outputIndex = -1
+    let index = -1
+    while (++index < length) {
+      if (callback(array[index], index)) {
+        ++outputIndex
+        output[outputIndex] = array[index]
+      }
+    }
+    return output
+  }
+
+  /**
+   *
+   * @param {number} start index of the first element to be returned
+   * @param {number} end index of the last element to be returned
+   * @returns {string[]} copy of values within range
+   */
+  static range (array, start, end) {
+    end += 1
+    const length = end - start
+    console.log(length)
+    let index = start - 1
+    let id = -1
+    const output = []
+    while (++index < end) {
+      output[++id] = array[index]
+    }
+    return output
+  }
 }
 
 module.exports = utils
